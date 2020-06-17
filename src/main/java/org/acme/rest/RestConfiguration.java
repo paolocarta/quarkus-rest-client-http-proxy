@@ -21,11 +21,14 @@ public class RestConfiguration {
     @ConfigProperty(name = "custom.http.proxy.scheme")
     String proxyScheme;
 
+    @ConfigProperty(name = "custom.http.client.uri")
+    String baseUri;
+
     @Produces
     public MyRestClient restClient() {
 
         MyRestClient build = RestClientBuilder.newBuilder()
-                .baseUri(UriBuilder.fromUri("https://restcountries.eu/rest").build())
+                .baseUri(UriBuilder.fromUri(baseUri).build())
                 .property(PROPERTY_PROXY_HOST, proxyHost)
                 .property(PROPERTY_PROXY_PORT, proxyPort)
                 .property(PROPERTY_PROXY_SCHEME, proxyScheme)

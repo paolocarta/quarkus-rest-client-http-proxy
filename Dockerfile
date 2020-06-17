@@ -16,9 +16,18 @@ COPY target/*-runner.jar /deployments/app.jar
 EXPOSE 8080
 USER 1001
 
-ENV HTTP_PROXY_HOST=localhost
-ENV HTTP_PROXY_PORT=9090
-ENV HTTP_PROXY_SCHEME=https
+#ENV HTTP_PROXY_HOST=localhost
+#ENV HTTP_PROXY_PORT=9090
+#ENV HTTP_PROXY_SCHEME=https
+#ENV HTTP_CLIENT_URI=https://restcountries.eu/rest
+
+
 
 WORKDIR /deployments
 CMD [ "/deployments/run-java.sh" ]
+
+## example to execute the container
+
+## docker run -it --rm --name http-proxy-quarkus -p 8080:8080 -e HTTP_PROXY_HOST=localhost \
+##  -e HTTP_PROXY_PORT=9090 -e HTTP_PROXY_SCHEME=https -e HTTP_CLIENT_URI=https://restcountries.eu/rest \
+##  clamer/http-proxy-quarkus
