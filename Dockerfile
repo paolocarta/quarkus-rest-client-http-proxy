@@ -22,7 +22,6 @@ USER 1001
 #ENV HTTP_CLIENT_URI=https://restcountries.eu/rest
 
 
-
 WORKDIR /deployments
 CMD [ "/deployments/run-java.sh" ]
 

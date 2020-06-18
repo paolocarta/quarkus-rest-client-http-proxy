@@ -3,9 +3,9 @@ package org.acme.rest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-public interface MyRestClient {
+public interface MyRestClientWithProxy {
 
-    @Path("/api/v1/employee/1")
+    @Path("/v2/name/italy")
     @GET
     String testCall();
 }

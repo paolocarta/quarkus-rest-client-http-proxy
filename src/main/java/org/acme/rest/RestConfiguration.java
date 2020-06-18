@@ -25,13 +25,23 @@ public class RestConfiguration {
     String baseUri;
 
     @Produces
-    public MyRestClient restClient() {
+    public MyRestClientWithProxy restClientWithProxy() {
 
-        MyRestClient build = RestClientBuilder.newBuilder()
+        MyRestClientWithProxy build = RestClientBuilder.newBuilder()
                 .baseUri(UriBuilder.fromUri(baseUri).build())
                 .property(PROPERTY_PROXY_HOST, proxyHost)
                 .property(PROPERTY_PROXY_PORT, proxyPort)
                 .property(PROPERTY_PROXY_SCHEME, proxyScheme)
+                .build(MyRestClientWithProxy.class);
+
+        return build;
+    }
+
+    @Produces
+    public MyRestClient restClient() {
+
+        MyRestClient build = RestClientBuilder.newBuilder()
+                .baseUri(UriBuilder.fromUri("http://dummy.restapiexample.com").build())
                 .build(MyRestClient.class);
 
         return build;
